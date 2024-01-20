@@ -6,6 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.preprocessing import MinMaxScaler
+from PIL import Image
 
 # Page configuration
 st.set_page_config(page_title="Movie", layout="wide")
@@ -20,11 +21,33 @@ if 'search_results' not in st.session_state:
 if 'search_query' not in st.session_state:
     st.session_state['search_query'] = ""
 
+#display_header()
+logo_path = "./images/small_movie_maniac.png"  
+
+# Load the logo image
+logo_image = Image.open(logo_path)
+
 # Création of 3 columns to force center the title
 col1, col2, col3 = st.columns([1, 6, 1])
 
+
+
 with col2:
-    st.markdown("<div style='text-align: center; margin-top: -40px;'><h1>MOVIE</h1></div>", unsafe_allow_html=True)
+    st.image(logo_image, use_column_width=True)
+    st.markdown("<div style='text-align: center; margin-top: 0px;'><h1>MOVIE</h1></div>", unsafe_allow_html=True)
+
+    # For the logo selector
+    st.markdown("""
+        <style>
+        /* Sélecteur pour l'image spécifique */
+        #root > div:nth-child(1) > div.withScreencast > div > div > div > section.main.st-emotion-cache-uf99v8.ea3mdgi3 > div.block-container.st-emotion-cache-z5fcl4.ea3mdgi2 > div > div > div > div.st-emotion-cache-ocqkz7.e1f1d6gn5 > div.st-emotion-cache-ml2xh6.e1f1d6gn3 > div > div > div > div:nth-child(1) > div > div > div > img {
+            margin-top: -145px; /* Ajustez cette valeur selon vos besoins */
+            margin-bottom: -110px;
+        }
+
+        /* Ajoutez du CSS similaire pour d'autres éléments si nécessaire */
+        </style>
+    """, unsafe_allow_html=True)
 
 # Loading the movie dataframe
 def load_data():
@@ -242,6 +265,7 @@ def format_votes(number):
             return formatted[:-2] + ' B'
         return formatted + ' B'
 
+# Créez une fonction pour formater la durée en heures et minutes
 # To format duration to hour and minute
 def format_duration(minutes):
     hours = minutes // 60
@@ -290,7 +314,7 @@ def display_movies(df_to_display):
 
     # If bottom page, click 'Show more' button to add 16 movies
     if len(df_to_display) > st.session_state['movies_shown']:
-        if st.button("Afficher plus", key='unique_key_afficher_plus'):
+        if st.button("Show more", key='unique_key_show_more'):
             st.session_state['movies_shown'] += 16
             st.rerun()
 
@@ -526,7 +550,7 @@ def show_movie_details(unique_id):
                 cols = st.columns(4)
 
         if len(recommended_movies) > st.session_state['movies_shown']:
-            if st.button("Afficher plus", key='unique_key_afficher_plus_detailed_movie'):
+            if st.button("Show more", key='show_more_detailed_movie'):
                 st.session_state['movies_shown'] += 16 
                 st.rerun()            
     else:
