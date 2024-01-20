@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Display</title>
+    <style>
+        /* Ajoutez ici vos styles CSS si nécessaire */
+    </style>
+</head>
+<body>
+    <div style='display: flex; flex-wrap: wrap; justify-content: center;'>
+        <div style='margin: -20px 0 -90px 0; border: 1px solid white; border-radius: 16px; overflow: hidden;'>
+            <a href="javascript:void(0);" id='{{ movie_id }}'>
+                <img src='{{ poster_url }}' style='width: 100%; object-fit: cover;'>
+            </a>
+            <div style='background-color: black; padding: 10px; min-height: 125px;'>
+                <div style='text-align: left; color: white;'>
+                    <span style='color: gold; font-size: 18px;'>★</span> 
+                    <span style='font-size: 16px;'>{{ average_rating }} | <span style='color: #E0E1DB;'>Votes: {{ votes_formatted }}</span>
+                </div>
+                <div style='text-align: left; color: white; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>
+                    {{ movie_title }}
+                </div>
+                <div style='color: #E0E1DB; font-size: 14px;'>{{ genres }}
+                </div>
+                <div style='color: white; font-size: 14px;'>Release date: {{ movie_year }}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
