@@ -318,7 +318,7 @@ def display_status_message(df, df_filtered, search_query, genres_filter, year_ra
     elif filters_modified or search_performed:
         st.markdown(f"### Your results for : {search_query}")
     else:
-        st.markdown("### Last popular movies :")
+        st.markdown("### Popular 80s - 90s movies :")
 
 # Define a function to apply sorting based on the selected option
 def apply_sorting(df, sort_option):

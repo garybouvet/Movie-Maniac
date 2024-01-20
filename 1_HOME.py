@@ -6,7 +6,7 @@ st.set_page_config(
     layout="wide"
 )
 
-logo_path = "./images/Movie_Maniac.png"  
+logo_path = "./images/small_movie_maniac.png"  
 
 # Load the logo image
 logo_image = Image.open(logo_path)
